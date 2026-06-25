@@ -1,6 +1,14 @@
-let items = [4, 6, 2, 1, 6, 3, 4, 8, 7, 1], coins =7, count=0;
-for(let item of items.sort((a,b)=>a-b)){
+//1833. Maximum Ice Cream Bars
+/**
+ * @param {number[]} costs
+ * @param {number} coins
+ * @return {number}
+ */
+var maxIceCream = function(costs, coins) {
+let count=0;
+for(let item of costs.sort((a,b)=>a-b)){
 if (coins < item) break;
- coins -= item, count++, console.log(item);
+ coins -= item, count++;
 }
-console.log(`Total items that can be purchased = ${count}`);
+return count;
+};
