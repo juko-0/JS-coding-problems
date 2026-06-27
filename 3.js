@@ -9,27 +9,21 @@ var countMajoritySubarrays = function(nums, target) {
     let arr = [];
     let length = 0;
     let result = 0;
-
     for (let i = 0; i < nums.length; i++) {
         arr = [];
-
+        count = 0;
         for (let j = i; j < nums.length; j++) {
             arr.push(nums[j]);
-
-            count = 0;
-            length = arr.length;
-
-            for (let item of arr) {
-                if (item === target) {
+            if (nums[j] === target) {
                     count++;
                 }
-            }
-
+            length = arr.length;
             if (count > Math.floor(length / 2)) {
                 result++;
             }
         }
     }
-
     return result;
 };
+
+console.log(countMajoritySubarrays([1, 2, 3, 2, 2], 2)); 
