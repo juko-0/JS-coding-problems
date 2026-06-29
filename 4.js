@@ -11,20 +11,25 @@ let result = 0;
 let j = 0;
 console.log(arr); 
 let arr2 = [];
+let arr3 = [];
 let i = 0;
 while (i < arr.length) {
   let item = arr[i];
   if(!arr2.includes(item)) {
     arr2.push(item);
-    count = arr2.length;
+    count=arr2.length;
     console.log(arr2);
     i++;
   }else{
-    j = arr2.indexOf(item);
+    for(let k = 0; k < i; k++) {
+      arr3.push(arr[k]);
+    }
+    j = arr3.lastIndexOf(item);
     i = j + 1;
     console.log(i);
-    arr2 = [];
     count = 1;
+    arr2 = [];
+    arr3 = [];
   }
   if(count > result) {
     result = count;
@@ -33,4 +38,4 @@ while (i < arr.length) {
 return result;
 }
 
-console.log(lengthOfLongestSubstring("dvdf"));
+console.log(lengthOfLongestSubstring("ddvdf"));
