@@ -9,6 +9,9 @@ var countMajoritySubarrays = function(nums, target) {
     let arr = [];
     let length = 0;
     let result = 0;
+    for(item of nums) {
+    (item === target)? item = 1 : item = 0;
+    }
     for (let i = 0; i < nums.length; i++) {
         arr = [];
         count = 0;
