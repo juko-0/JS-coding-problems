@@ -1,0 +1,10 @@
+Things that I learned in different problems:
+
+In [8.js]
+i.To get the length of the string in js
+--> let len = Math.abs(x).toString().length;
+   where, abs(x) means absolute value of x; removing all the points after decimal and so on.
+ii.Using power of a number in JS requires **
+--> let div = 10 ** len;  
+ equivalent to 10^len; 10 ko power len.
+ 
