@@ -1,49 +1,39 @@
-//12. Convert Number to Roman
+//12. Integer to Roman
 /**
  * @param {number} num
  * @return {string}
  */
 var intToRoman = function(num) {
-let len = Math.abs(num).toString().length;
-let result;
-let div = 10**(len-1);
+let result= "";
+let front;
 let rom = [["I",1],["V", 5], ["X", 10], ["L", 50], ["C", 100], ["D", 500], ["M",1000]];
-let temp = 0;
-if(len==4){ 
-    result = rom[6][0].repeat((num-num%div)/div);
-    console.log(result)
-    num = num%div;
-    console.log(num);
-    div = div/10;
-    console.log(div);
-}
-let i=0;
+let temp,i; 
+if(num<1 && num>3999){
+    return 0;
+}else{
 while(num>0){
-    temp = num-(num%div);
-    while(temp>=rom[i][1]){
-    i++;
-    }
-    i--;
-    console.log(temp, div, i);
-    if(temp==div*9 || temp == div*4){
-    (temp==div*9)?result=result+rom[i-1][0]+rom[i+1][0]:result=result+rom[i-1][0]+rom[i][0];
-    num = num%div;
-    div=div/10;
-    console.log(result);
-    i=0;
-    }else if(temp>=div*5 && temp!=div*9){
-        result = result+rom[i][0]+rom[i-1][0].repeat((temp-rom[i][0])/div);
-        num = num%div;
-        div=div/10;
-        i=0;
-    }else if(temp<div*4){
-        result = result + rom[i][1].repeat(temp/div);
-        num = num%div;
-        div=div/10;
-        i=0;
-    }
-    
- }
- console.log(result);
+let len = Math.abs(num).toString().length;
+let div = 10**(len-1);
+temp = num-(num%div);
+num=num%div;
+i=0;
+while(i<7){
+    if(temp>=rom[i][1]) i++;
+    else break;
 }
-intToRoman(3994);
+i--;
+front = temp/div;
+console.log(i, temp, front);
+if(front<4){
+result = result + rom[i][0].repeat(front);
+}else if(front>=5 && front<9){
+result = result + rom[i][0]+ rom[i-1][0].repeat(front-5);
+}else{
+    (front==9)?result = result + rom[i-1][0] + rom[i+1][0]: result = result + rom[i][0] + rom[i+1][0];
+}
+}
+}
+return result;
+};
+
+console.log(intToRoman(4));
