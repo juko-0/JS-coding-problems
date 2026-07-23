@@ -5,22 +5,26 @@
  */
 var letterCombinations = function(digits) {
 let arr = [["a","b","c"],["d","e","f"],["g","h","i"],["j","k","l"],["m","n","o"],["p","q","r","s"],["t","u","v"],["w","x","y","z"]];
+let temp = [];
+let c = 0;
 let len = digits.toString().length;
-let result = [];
-let i=0,j=0;
-if(len>=1 && len<=4){
-while(len>0){
-let  num = +(digits+'').charAt(j);
-arr[num-2].forEach(item=>{
-result[i]=item;
-i++
-})
-j++;
-i=0;
+let  num = +(digits+'').charAt(0);
+let result = arr[num-2];
 len--;
+let k = 1;
+while(len>0){
+    num = +(digits+'').charAt(k);
+    for(let i=0;i<result.length;i++){
+        for(let j=0;j<arr[num-2].length;j++){
+            temp[c] = result[i]+arr[num-2][j];
+            c++;
+        }       
+    }
+    result=temp;
+    temp=[]
+    k++;
+    len--;
+    c=0;
 }
-console.log(result)
-}
+return result;
 };
-
-letterCombinations(477)
