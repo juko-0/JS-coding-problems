@@ -10,11 +10,15 @@ var fourSum = function(nums, target) {
     let sum;
     let check;
     let count = 0;
+    if(len<4){
+        return []
+    }else{
     for(let i=0;i<len;i++){
         let j = i+1%len;
         if(i<(i+3)%len){
-            while(j>0){
+            while(j>0 && (j+2)%len!==i){
             sum = nums[i]+nums[j%len]+nums[(j+1)%len]+nums[(j+2)%len];
+            
             if(sum===target){
                 check = [nums[i],nums[j%len],nums[(j+1)%len],nums[(j+2)%len]].sort((a,b)=>a-b);
                 let checkString = JSON.stringify(check);
@@ -27,7 +31,7 @@ var fourSum = function(nums, target) {
             j=(j+1)%len;
             }
         }else{
-            while((j+3)%len!==(i-1)){
+            while((j+2)%len!==(i-1)){
                            sum = nums[i]+nums[j%len]+nums[(j+1)%len]+nums[(j+2)%len];
             if(sum===target){
                 check = [nums[i],nums[j%len],nums[(j+1)%len],nums[(j+2)%len]].sort((a,b)=>a-b);
@@ -43,7 +47,7 @@ var fourSum = function(nums, target) {
         }
     }
     return array2;
-};
-let nums =[2,2,2,2];
-target = 8;
+}};
+let nums =[-3,-1,0,2,4,5];
+target = 0;
 console.log(fourSum(nums, target));
