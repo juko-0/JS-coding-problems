@@ -1,31 +1,55 @@
-//letter combination of a phone number
+//4Sum
 /**
- * @param {string} digits
- * @return {string[]}
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[][]}
  */
-var letterCombinations = function(digits) {
-let arr = [["a","b","c"],["d","e","f"],["g","h","i"],["j","k","l"],["m","n","o"],["p","q","r","s"],["t","u","v"],["w","x","y","z"]];
-let temp = [];
-let c = 0;
-let len = digits.toString().length;
-let  num = +(digits+'').charAt(0);
-let result = arr[num-2];
-len--;
-let k = 1;
-while(len>0){
-    num = +(digits+'').charAt(k);
-    for(let i=0;i<result.length;i++){
-        for(let j=0;j<arr[num-2].length;j++){
-            temp[c] = result[i]+arr[num-2][j];
-            c++;
-        }       
+var fourSum = function(nums, target) {
+    let len = nums.length;
+    let array2=[];
+    let sum;
+    let check;
+    let count = 0;
+    if(len<4){
+        return [];
+    }else{
+    for(let i=0;i<len;i++){
+        let j = i+1%len;
+        if(i<(i+3)%len){
+            while(j>0 && (j+2)%len!==i){
+            sum = nums[i]+nums[j%len]+nums[(j+1)%len]+nums[(j+2)%len];
+            console.log(nums[i],nums[j%len],nums[(j+1)%len],nums[(j+2)%len]);
+            if(sum===target){
+                check = [nums[i],nums[j%len],nums[(j+1)%len],nums[(j+2)%len]];
+                let checkString = JSON.stringify(check);
+                let exists = array2.some(item => JSON.stringify(item) === checkString);
+                if(!exists){
+                array2[count]=[nums[i],nums[j%len],nums[(j+1)%len],nums[(j+2)%len]].sort((a,b)=>a-b);
+                }
+                count++;
+            }
+            j=(j+1)%len;
+            }
+        }else{
+        while((j+2)!==(i-1)){
+         sum = nums[i]+nums[j%len]+nums[(j+1)%len]+nums[(j+2)%len];
+        console.log(nums[i],nums[j%len],nums[(j+1)%len],nums[(j+2)%len]);
+            if(sum===target){
+                check = [nums[i],nums[j%len],nums[(j+1)%len],nums[(j+2)%len]];
+                let checkString = JSON.stringify(check);
+                let exists = array2.some(item => JSON.stringify(item) === checkString);
+                if(!exists){
+                array2[count]=[nums[i],nums[j%len],nums[(j+1)%len],nums[(j+2)%len]].sort((a,b)=>a-b);
+                }
+                count++;
+            }
+            j=(j+1)%len;   
+        }
+        }
     }
-    result=temp;
-    temp=[]
-    k++;
-    len--;
-    c=0;
+    return array2;
 }
 };
-
-letterCombinations(234);
+let nums =[2,2,2,2];
+target = 8;
+console.log(fourSum(nums, target));
