@@ -11,26 +11,42 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-    let a = "";
-    let b = "";
- while(l1!==null){
- a = l1.val+a;
-l1= l1.next;
- }
-  while(l2!==null){
- b = l2.val+b;
- l2= l2.next;
- }
- a=+a;
- b=+b;
-let arr = [...String(a+b)].map(Number);
-let i = 1;
-let temp =new ListNode(arr[0]);
-while(i<arr.length){
-    let node =new ListNode(arr[i]);
-    node.next = temp;
-    temp=node;
-    i++;
+    let carry = 0;
+    let head = new ListNode();
+    let temp = head;
+while(l1!==null||l2!==null){
+    console.log("case 1 true");
+    if(l1!==null&&l2!==null){
+        
+        sum=l1.val+l2.val+carry;
+        console.log("case 1 true",l1.val,l2.val,sum);
+        l1=l1.next;
+        l2=l2.next;
+        
+    } 
+    else if(l1===null){
+        sum=l2.val+carry;
+        console.log("case 1 true",l2.val,sum);
+        l2=l2.next;
+    }
+    else{
+        sum=l1.val+carry;
+        console.log("case 1 true",l1.val,sum);
+        l1=l1.next;
+    }
+    carry = 0;
+    if(sum>9){
+        sum%=10;
+        carry = 1;
+    }
+    let node = new ListNode(sum);
+    console.log(sum);
+    temp.next=node;
+    temp = node;
 }
-return temp;
+if(carry){
+    let node = new ListNode(carry);
+    temp.next=node;
+}
+return head.next;
 }
