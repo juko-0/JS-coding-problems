@@ -15,23 +15,18 @@ var addTwoNumbers = function(l1, l2) {
     let head = new ListNode();
     let temp = head;
 while(l1!==null||l2!==null){
-    console.log("case 1 true");
-    if(l1!==null&&l2!==null){
-        
+    if(l1!==null&&l2!==null){    
         sum=l1.val+l2.val+carry;
-        console.log("case 1 true",l1.val,l2.val,sum);
         l1=l1.next;
         l2=l2.next;
         
     } 
     else if(l1===null){
         sum=l2.val+carry;
-        console.log("case 1 true",l2.val,sum);
         l2=l2.next;
     }
     else{
         sum=l1.val+carry;
-        console.log("case 1 true",l1.val,sum);
         l1=l1.next;
     }
     carry = 0;
@@ -40,7 +35,6 @@ while(l1!==null||l2!==null){
         carry = 1;
     }
     let node = new ListNode(sum);
-    console.log(sum);
     temp.next=node;
     temp = node;
 }
