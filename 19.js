@@ -23,7 +23,6 @@ var removeNthFromEnd = function(head, n) {
  for(let y=0; y<i; y++){
  node=node.next;
  }
- console.log(i+2<x);
- (i+2<x)?node.next=node.next.next:node.next=null;
+ (i+2<=x)?node.next=node.next.next:node.next=null;
  return head.next;
 };
