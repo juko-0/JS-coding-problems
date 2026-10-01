@@ -2,12 +2,14 @@
  * @param {number} n
  * @return {string}
  */
-var countAndSay = function() {
+var countAndSay = function(n){
     let count=0,temp=1;
-    let num = [1,1,1,2,2,1];
+    let num = [1];
     let newNum = '';
+    if(n==1) return "1";
+    else if(n>30) return 0;
+    while(n>1){
     while(count<num.length){
-        console.log((num[count+1]!==null && num[count]==num[count+1]))
     if(num[count+1]!==null && num[count]==num[count+1]){
         temp++;
         count++;
@@ -16,8 +18,13 @@ var countAndSay = function() {
         temp=1;
         count++;
     }
-}
+}       count=0;
+        num=[];
         num = Array.from(newNum, Number);
-console.log(num);
+        newNum='';
+        n--;
+}
+
+return num.join("");
 };
-countAndSay();
+console.log(countAndSay(3));
